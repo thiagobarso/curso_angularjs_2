@@ -1,6 +1,10 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
+import { LancamentosCadastroComponent } from './lancamentos-cadastro/lancamentos-cadastro.component';
+import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
@@ -11,20 +15,12 @@ import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
-
-import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { CoreModule } from './core/core.module';
-import { PessoasModule } from './pessoas/pessoas.module';
-
+import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
-    BrowserModule,
+    CommonModule,
+    FormsModule,
     BrowserAnimationsModule,
     InputTextModule,
     ButtonModule,
@@ -37,11 +33,16 @@ import { PessoasModule } from './pessoas/pessoas.module';
     InputMaskModule,
     FormsModule,
     CurrencyMaskModule,
-    LancamentosModule,
-    PessoasModule
-    CoreModule
+    SharedModule    
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [ 
+    LancamentosCadastroComponent,
+    LancamentosPesquisaComponent    
+  ],
+  exports : [
+    LancamentosCadastroComponent,
+    LancamentosPesquisaComponent 
+  ]
 })
-export class AppModule { }
+export class LancamentosModule { }
+
