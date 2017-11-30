@@ -24,6 +24,7 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 
 /** Modulo compartilhado */
 import { SharedModule } from './../shared/shared.module';
+import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { SharedModule } from './../shared/shared.module';
   ],
   declarations: [ 
     LancamentosCadastroComponent,
-    LancamentosPesquisaComponent    
+    LancamentosPesquisaComponent,
+    LancamentosGridComponent    
   ],
   exports : [
     LancamentosCadastroComponent,

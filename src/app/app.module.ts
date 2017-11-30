@@ -20,11 +20,13 @@ import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LancamentosGridComponent,
   ],
   imports: [
     BrowserModule,
