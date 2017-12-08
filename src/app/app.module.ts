@@ -1,5 +1,6 @@
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,17 +21,18 @@ import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { LancamentosGridComponent } from './lancamentos/lancamentos-grid/lancamentos-grid.component';
+import { LancamentosService } from './lancamentos/lancamentos.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LancamentosGridComponent,
+    AppComponent,    
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
@@ -46,7 +48,7 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
     PessoasModule,
     CoreModule
   ],
-  providers: [],
+  providers: [ LancamentosService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
