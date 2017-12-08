@@ -1,13 +1,14 @@
-import { LancamentoFiltro } from './lancamentos.service';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 
-export interface LancamentoFiltro{
+export class LancamentoFiltro{
   descricao: string;
   dataVencimentoInicio: Date;
   dataVencimentoFim: Date;
+  pagina = 0;
+  itensPorPagina = 5;
 }
 
 
@@ -23,6 +24,9 @@ export class LancamentosService {
 
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+
+    params.set('page', filtro.pagina.toString());
+    params.set('size', filtro.itensPorPagina.toString());
 
     if (filtro.descricao) {
       params.set('descricao', filtro.descricao);
@@ -40,7 +44,15 @@ export class LancamentosService {
     return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, search : params })
       .toPromise()
       .then(response => {
-        return response.json().content;
+        const responseJson = response.json()
+        const lancamentos = responseJson.content;
+
+        const resultado = {
+          lancamentos,
+          total : responseJson.totalElements
+        };
+
+        return resultado;
       });
   }
 

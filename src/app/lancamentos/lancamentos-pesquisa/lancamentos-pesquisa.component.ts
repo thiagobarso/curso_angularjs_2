@@ -8,25 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LancamentosPesquisaComponent implements OnInit {
 
-  descricao : string;
-  dataVencimentoInicio: Date;
-  dataVencimentoFim: Date;
+  filtro = new LancamentoFiltro();
   lancamentos = [];
 
   constructor(private lancamentoService: LancamentosService) { }
-  
+
   ngOnInit() {
     this.pesquisar();
   }
 
   pesquisar() {
-    const filtro: LancamentoFiltro = {
-      descricao : this.descricao,
-      dataVencimentoInicio : this.dataVencimentoInicio,
-      dataVencimentoFim : this.dataVencimentoFim
-    }
-    this.lancamentoService.pesquisar(filtro)
-      .then(dados => this.lancamentos = dados);
+    this.lancamentoService.pesquisar(this.filtro)
+      .then(resultado => {
+        this.lancamentos = resultado.lancamentos;
+      });
   }
 
 }
