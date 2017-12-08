@@ -1,4 +1,4 @@
-<p-dataTable [value]="lancamentos" [paginator]="true" [rows]="10" [responsive]="true" emptyMessage="Nenhum lancamento encontrado." >
+<p-dataTable [value]="lancamentos" [responsive]="true" emptyMessage="Nenhum lancamento encontrado." [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
   <p-column field="pessoa" header="Pessoa"></p-column>
   <p-column field="descricao" header="Descrição"></p-column>
   <p-column field="dataVencimento" header="Vencimento" styleClass="col-data"></p-column>
