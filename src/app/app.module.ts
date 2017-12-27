@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastyModule } from 'ng2-toasty';
+import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+import { ConfirmationService } from 'primeng/components/common/api';
 
 /** LIB -PRIMENG */
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
@@ -30,7 +32,7 @@ import { LancamentosService } from './lancamentos/lancamentos.service';
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,13 +50,15 @@ import { LancamentosService } from './lancamentos/lancamentos.service';
     FormsModule,
     CurrencyMaskModule,
     ToastyModule.forRoot(),
+    ConfirmDialogModule,
     LancamentosModule,
     PessoasModule,
     CoreModule
   ],
-  providers: [ 
+  providers: [
     LancamentosService,
-    PessoasService 
+    PessoasService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
