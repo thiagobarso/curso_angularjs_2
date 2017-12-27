@@ -21,6 +21,8 @@ import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { PessoasService } from './pessoas/pessoas.service';
+
 import { LancamentosGridComponent } from './lancamentos/lancamentos-grid/lancamentos-grid.component';
 import { LancamentosService } from './lancamentos/lancamentos.service';
 
@@ -48,7 +50,10 @@ import { LancamentosService } from './lancamentos/lancamentos.service';
     PessoasModule,
     CoreModule
   ],
-  providers: [ LancamentosService ],
+  providers: [ 
+    LancamentosService,
+    PessoasService 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

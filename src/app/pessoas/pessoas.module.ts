@@ -23,6 +23,7 @@ import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.co
 
 /** Modulo compartilhado */
 import { SharedModule } from './../shared/shared.module';
+import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 
 @NgModule({
   imports: [
@@ -40,9 +41,9 @@ import { SharedModule } from './../shared/shared.module';
     InputMaskModule,
     FormsModule,
     CurrencyMaskModule,
-    SharedModule  
+    SharedModule
   ],
-  declarations: [ PessoasCadastroComponent ],
-  exports: [ PessoasCadastroComponent ]
+  declarations: [PessoasCadastroComponent, PessoasPesquisaComponent],
+  exports: [PessoasCadastroComponent, PessoasPesquisaComponent]
 })
 export class PessoasModule { }
