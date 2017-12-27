@@ -23,7 +23,7 @@ export class LancamentosService {
     const params = new URLSearchParams();
 
     const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
@@ -54,6 +54,15 @@ export class LancamentosService {
 
         return resultado;
       });
+  }
+
+  excluir(codigo: number) : Promise<void>{
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.delete(`${this.lancamentosUrl}/${codigo}`,{headers})
+    .toPromise()
+    .then(() => null);
   }
 
 }

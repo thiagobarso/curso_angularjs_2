@@ -31,7 +31,7 @@
         <!--app-lancamentos-grid [lancamentos]="lancamentos" [filtro]="filtro"></app-lancamentos-grid -->
 
         <p-dataTable [value]="lancamentos" [responsive]="true" emptyMessage="Nenhum lancamento encontrado." 
-        [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
+        [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
           <p-column field="pessoa" header="Pessoa"></p-column>
           <p-column field="descricao" header="Descrição"></p-column>
           <p-column field="dataVencimento" header="Vencimento" styleClass="col-data"></p-column>
@@ -44,7 +44,11 @@
           <p-column styleClass="col-acoes">
             <ng-template let-lanc="rowData" pTemplate="body">
               <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-              <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+              <button pButton 
+              icon="fa-trash" 
+              pTooltip="Excluir" 
+              tooltipPosition="top"
+              (click)="excluir(lanc)"></button>
             </ng-template>
           </p-column>
         </p-dataTable>

@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ToastyModule } from 'ng2-toasty';
 
 /** LIB -PRIMENG */
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
@@ -46,6 +47,7 @@ import { LancamentosService } from './lancamentos/lancamentos.service';
     InputMaskModule,
     FormsModule,
     CurrencyMaskModule,
+    ToastyModule.forRoot(),
     LancamentosModule,
     PessoasModule,
     CoreModule
