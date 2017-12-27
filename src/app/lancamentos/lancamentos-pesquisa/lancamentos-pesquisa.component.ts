@@ -1,6 +1,6 @@
 import { LancamentosService, LancamentoFiltro } from './../lancamentos.service';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
+import { LazyLoadEvent } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -29,8 +29,8 @@ export class LancamentosPesquisaComponent implements OnInit {
       });
   }
 
-  // aoMudarPagina(event: LazyLoadEvent){
-  //   console.log(event);
-  // }
-
+  aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.pesquisar(pagina);
+  }
 }
