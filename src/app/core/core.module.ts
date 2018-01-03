@@ -1,12 +1,37 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { NavbarComponent } from './navbar/navbar.component';
+import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+import { ToastyModule } from 'ng2-toasty';
+import { ErrorHandlerService } from './error-handler.service';
+
+import { ConfirmationService } from 'primeng/components/common/api';
+import { PessoasService } from './../pessoas/pessoas.service';
+import { LancamentosService } from './../lancamentos/lancamentos.service';
+
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ToastyModule.forRoot(),
+    ConfirmDialogModule,
   ],
   declarations: [ NavbarComponent ],
-  exports: [ NavbarComponent ]
+  exports: [ 
+    NavbarComponent,
+    ToastyModule,
+    ConfirmDialogModule ],
+  providers : [
+    ErrorHandlerService,
+    LancamentosService,
+    PessoasService,
+    ConfirmationService,
+    { provide: LOCALE_ID, useValue: 'pt' }
+  ]
 })
 export class CoreModule { }
