@@ -42,28 +42,53 @@ export class PessoasPesquisaComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
-  confirmarExclusao(pessoa: any){
+  confirmarExclusao(pessoa: any) {
     this.confirmation.confirm({
-      message : 'Tem certeza que deseja excluir?',
-      accept : () =>{
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
         this.excluir(pessoa);
       }
     });
   }
 
-  excluir(pessoa: any){
+  excluir(pessoa: any) {
     this.pessoasService.excluir(pessoa.codigo)
-    .then(() =>{
-      console.log('Excluído');
-      if(this.grid.first === 0){
-        this.pesquisar();
-      }else{
-        this.grid.first = 0;
+      .then(() => {
+        console.log('Excluído');
+        if (this.grid.first === 0) {
+          this.pesquisar();
+        } else {
+          this.grid.first = 0;
 
+        }
+        this.toasty.success('Pessoa excluída com sucesso!');
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  mudarStatus(pessoa: any) {
+    let status: boolean;
+    let msg: string;
+    if (pessoa.ativo) {
+      status = false;
+      msg = "desativada";
+    } else {
+      status = true;
+      msg = "ativada";
+    }
+    this.pessoasService.mudarStatus(pessoa.codigo, status)
+      .then(() => {
+        console.log('Excluído');
+        if (this.grid.first === 0) {
+          this.pesquisar();
+        } else {
+          this.grid.first = 0;
+
+        }
+        this.toasty.success(`Pessoa ${msg} com sucesso!`);
       }
-      this.toasty.success('Pessoa excluída com sucesso!');
-    })
-    .catch( erro => this.errorHandler.handle(erro));
+      )
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 }

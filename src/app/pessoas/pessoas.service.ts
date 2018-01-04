@@ -45,22 +45,35 @@ export class PessoasService {
     }
 
     //testandio
-    listarTodas(): Promise<any>{
+    listarTodas(): Promise<any> {
         const headers = new Headers();
         headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-        return this.http.get(this.pessoasUrl, {headers})
+        return this.http.get(this.pessoasUrl, { headers })
             .toPromise()
             .then(response => response.json().content);
 
     }
 
-    excluir(codigo: number) : Promise<void>{
+    excluir(codigo: number): Promise<void> {
         const headers = new Headers();
         headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-    
-        return this.http.delete(`${this.pessoasUrl}/${codigo}`,{headers})
-        .toPromise()
-        .then(() => null);
-      }
+
+        return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+            .toPromise()
+            .then(() => null);
+    }
+
+    mudarStatus(codigo: number, ativo: boolean): Promise<void> {
+        const headers = new Headers();
+        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+        headers.append('Content-Type', 'application/json');
+
+        console.log('DEGUg: ' + ativo);
+
+        return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
+            .toPromise()
+            .then(() => null);
+    }
+
 }

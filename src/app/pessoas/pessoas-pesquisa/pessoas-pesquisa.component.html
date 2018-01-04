@@ -25,7 +25,12 @@
           <p-column field="nome" header="Nome"></p-column>
           <p-column field="endereco.cidade" header="Cidade"></p-column>
           <p-column field="endereco.estado" header="Estado"></p-column>
-          <p-column field="ativo" header="Status"></p-column>
+          <p-column field="ativo" header="Status">
+            <ng-template let-pess="rowData" pTemplate="body">
+                <a *ngIf="pess.ativo == true" (click)="mudarStatus(pess)">Ativo</a>
+                <a *ngIf="pess.ativo == false" (click)="mudarStatus(pess)">Inativo</a>
+            </ng-template>
+          </p-column>
           <p-column styleClass="col-acoes">
             <ng-template let-pess="rowData" pTemplate="body">
               <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
