@@ -44,7 +44,6 @@ export class PessoasService {
             });
     }
 
-    //testandio
     listarTodas(): Promise<any> {
         const headers = new Headers();
         headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
@@ -68,8 +67,6 @@ export class PessoasService {
         const headers = new Headers();
         headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
         headers.append('Content-Type', 'application/json');
-
-        console.log('DEGUg: ' + ativo);
 
         return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
             .toPromise()
