@@ -13,6 +13,7 @@ import { LancamentosService } from './../lancamentos/lancamentos.service';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -21,13 +22,15 @@ registerLocaleData(localePt, 'pt-BR');
     CommonModule,
     ToastyModule.forRoot(),
     ConfirmDialogModule,
+    RouterModule
   ],
-  declarations: [ NavbarComponent ],
-  exports: [ 
+  declarations: [NavbarComponent],
+  exports: [
     NavbarComponent,
     ToastyModule,
-    ConfirmDialogModule ],
-  providers : [
+    ConfirmDialogModule,
+    RouterModule],
+  providers: [
     ErrorHandlerService,
     LancamentosService,
     PessoasService,

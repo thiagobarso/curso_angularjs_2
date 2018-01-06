@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 
 /** LIB -PRIMENG */
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
@@ -25,7 +26,18 @@ import { PessoasService } from './pessoas/pessoas.service';
 
 import { LancamentosGridComponent } from './lancamentos/lancamentos-grid/lancamentos-grid.component';
 import { LancamentosService } from './lancamentos/lancamentos.service';
+import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { LancamentosCadastroComponent } from './lancamentos/lancamentos-cadastro/lancamentos-cadastro.component';
+import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
+import { PessoasCadastroComponent } from './pessoas/pessoas-cadastro/pessoas-cadastro.component';
 
+
+const routes: Routes = [
+  { path : 'lancamentos', component : LancamentosPesquisaComponent},
+  { path : 'lancamentos/novo', component : LancamentosCadastroComponent},
+  { path : 'pessoas', component : PessoasPesquisaComponent},
+  { path : 'pessoas/nova', component : PessoasCadastroComponent},
+];
 
 @NgModule({
   declarations: [
@@ -46,7 +58,7 @@ import { LancamentosService } from './lancamentos/lancamentos.service';
     InputMaskModule,
     FormsModule,
     CurrencyMaskModule,
-
+    RouterModule.forRoot(routes),
     LancamentosModule,
     PessoasModule,
     CoreModule
