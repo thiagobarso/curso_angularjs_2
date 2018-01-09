@@ -14,6 +14,7 @@ import { LancamentosService } from './../lancamentos/lancamentos.service';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { RouterModule } from '@angular/router';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -24,7 +25,7 @@ registerLocaleData(localePt, 'pt-BR');
     ConfirmDialogModule,
     RouterModule
   ],
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [
     NavbarComponent,
     ToastyModule,
