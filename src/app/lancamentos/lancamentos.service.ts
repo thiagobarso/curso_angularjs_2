@@ -76,4 +76,56 @@ export class LancamentosService {
       .then(response => response.json());
   }
 
+  atualizar(lancamento: Lancamento): Promise<Lancamento> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers.append('Content-Type', 'application/json');
+
+    const codigo = lancamento.codigo;
+
+    return this.http.put(`${this.lancamentosUrl}/${codigo}`, JSON.stringify(lancamento), { headers })
+      .toPromise()
+      .then(response => {
+        console.log('ATUALIZAR:')
+        console.log(response.json().content);
+        let lancamentos : Lancamento[] = [];
+        lancamentos.push(response.json());
+        let lancamentosTransformados = this.converterStringParaDatas(lancamentos);
+        return lancamentosTransformados[0];
+      });
+  }
+
+  buscarPorCodigo(codigo : number): Promise<Lancamento>{
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get(`${this.lancamentosUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(response => {
+        console.log('BUSCAR POR CODIGO:');
+        console.log(response.json());
+        let lancamentos : Lancamento[] = [];
+        lancamentos.push(response.json());
+        let lancamentosTransformados = this.converterStringParaDatas(lancamentos);
+        console.log(lancamentosTransformados[0]);
+        return lancamentosTransformados[0];
+      });
+  }
+
+
+  private converterStringParaDatas(lancamentos: Lancamento[]): Lancamento[]{
+    for(let l of lancamentos){      
+      if(l.dataVencimento != null){
+        const dataVencimentoTipoDate = moment(l.dataVencimento, 'YYYY/MM/DD').toDate();    
+        l.dataVencimento = dataVencimentoTipoDate;
+      }
+      if(l.dataPagamento != null){
+        const dataPagamentoTipoDate = moment(l.dataPagamento, 'YYYY/MM/DD').toDate();    
+        l.dataPagamento = dataPagamentoTipoDate;
+      }
+    }
+    return lancamentos;
+  }
+
 }

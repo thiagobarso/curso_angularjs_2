@@ -26,6 +26,8 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { SharedModule } from './../shared/shared.module';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 
+import { RouterModule } from '@angular/router';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
     InputMaskModule,
     FormsModule,
     CurrencyMaskModule,
-    SharedModule    
+    SharedModule,
+    RouterModule    
   ],
   declarations: [ 
     LancamentosCadastroComponent,
