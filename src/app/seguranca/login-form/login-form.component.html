@@ -1,0 +1,25 @@
+<div class="container">
+
+  <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="login(loginForm)">
+
+    <div class="ui-md-4">
+
+      <div class="ui-g-12">
+        <h1>Login</h1>
+      </div>
+
+      <div class="ui-fluid ui-g-12">
+        <input pInputText type="text" name="usuario" [(ngModel)]="model.usuario" #usuario="ngModel">
+      </div>
+
+      <div class="ui-fluid ui-g-12">
+        <input pInputText type="password" name="senha" [(ngModel)]="model.senha" #senha="ngModel">
+      </div>
+
+      <div class="ui-fluid ui-g-12">
+        <button pButton type="submit" label="Login"></button>
+      </div>
+
+    </div>
+  </form>
+</div>

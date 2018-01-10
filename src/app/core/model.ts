@@ -1,3 +1,8 @@
+export class Login{
+    usuario: string;
+    senha: string;
+}
+
 export class Endereco{
     logradouro: string;
     numero: string;

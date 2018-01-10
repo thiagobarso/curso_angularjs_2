@@ -17,6 +17,8 @@ import localePt from '@angular/common/locales/pt';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
+import { AuthService } from './../seguranca/auth.service';
+
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -40,6 +42,7 @@ registerLocaleData(localePt, 'pt-BR');
     LancamentosService,
     PessoasService,
     CategoriasService,
+    AuthService,
     ConfirmationService,
     Title,
     { provide: LOCALE_ID, useValue: 'pt' }

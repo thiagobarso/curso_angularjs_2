@@ -32,6 +32,7 @@ import { LancamentosCadastroComponent } from './lancamentos/lancamentos-cadastro
 import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoasCadastroComponent } from './pessoas/pessoas-cadastro/pessoas-cadastro.component';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 @NgModule({
   declarations: [
@@ -54,8 +55,9 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
     CurrencyMaskModule,
     LancamentosModule,
     PessoasModule,
+    SegurancaModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
