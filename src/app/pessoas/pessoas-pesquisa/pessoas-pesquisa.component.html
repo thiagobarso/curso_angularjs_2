@@ -33,7 +33,11 @@
           </p-column>
           <p-column styleClass="col-acoes">
             <ng-template let-pess="rowData" pTemplate="body">
-              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+              <a pButton 
+              icon="fa-pencil" 
+              pTooltip="Editar" 
+              tooltipPosition="top"
+              [routerLink]="['/pessoas/', pess.codigo]"></a>
               <button pButton 
               icon="fa-trash" 
               pTooltip="Excluir" 
@@ -47,7 +51,7 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Nova Pessoa"></a>
+      <a pButton label="Nova Pessoa" routerLink="/pessoas/nova"></a>
     </div>
 
   </div>

@@ -24,6 +24,7 @@ import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.co
 /** Modulo compartilhado */
 import { SharedModule } from './../shared/shared.module';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { PessoasRoutingModule } from './pessoas-routing.module';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     InputMaskModule,
     FormsModule,
     CurrencyMaskModule,
-    SharedModule
+    SharedModule,
+    PessoasRoutingModule
   ],
   declarations: [PessoasCadastroComponent, PessoasPesquisaComponent],
   exports: [PessoasCadastroComponent, PessoasPesquisaComponent]

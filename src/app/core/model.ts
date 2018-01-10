@@ -9,7 +9,7 @@ export class Endereco{
 }
 
 export class Pessoa{
-    codigo: number = 1;
+    codigo: number;
     nome: string;
     endereco = new Endereco();
     ativo: boolean;
