@@ -21,12 +21,11 @@ import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 /** Componentes deste modulo */
 import { LancamentosCadastroComponent } from './lancamentos-cadastro/lancamentos-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 /** Modulo compartilhado */
 import { SharedModule } from './../shared/shared.module';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
-
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -45,7 +44,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     CurrencyMaskModule,
     SharedModule,
-    RouterModule    
+    LancamentosRoutingModule    
   ],
   declarations: [ 
     LancamentosCadastroComponent,

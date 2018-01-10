@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { CategoriasService } from './../categorias/categorias.service';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -25,7 +26,10 @@ registerLocaleData(localePt, 'pt-BR');
     ConfirmDialogModule,
     RouterModule
   ],
-  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
+  declarations: [
+    NavbarComponent,
+    PaginaNaoEncontradaComponent
+  ],
   exports: [
     NavbarComponent,
     ToastyModule,
@@ -37,6 +41,7 @@ registerLocaleData(localePt, 'pt-BR');
     PessoasService,
     CategoriasService,
     ConfirmationService,
+    Title,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
