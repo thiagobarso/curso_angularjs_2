@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { RequestOptions, Http } from '@angular/http';
-import { AuthService } from './auth.service';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { RequestOptionsArgs } from '@angular/http/src/interfaces';
+import { RequestOptions, Http, RequestOptionsArgs, Response } from '@angular/http';
+
+import { AuthHttp, AuthConfig, JwtHelper } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
+
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class MoneyHttp extends AuthHttp {

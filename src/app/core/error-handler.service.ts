@@ -1,3 +1,4 @@
+import { Response } from '@angular/http';
 import { ToastyService } from 'ng2-toasty';
 import { Injectable } from '@angular/core';
 
@@ -6,15 +7,31 @@ export class ErrorHandlerService {
 
   constructor(private toasty: ToastyService) { }
 
-  handle(errorResponse: any){
+  handle(errorResponse: any) {
     let msg: string;
 
-    if (typeof errorResponse == 'string'){
+    if (typeof errorResponse == 'string') {
       msg = errorResponse;
-    }else{
-      let corpoDoErro = JSON.parse(errorResponse._body);
-      msg = corpoDoErro[0].mensagemUsuario;
-      console.log('Ocorreu um erro.', corpoDoErro[0].mensagemUsuario);
+
+    } else if (errorResponse instanceof Response
+      && errorResponse.status >= 400 && errorResponse.status <= 499) {
+      let errors;
+      msg = 'Ocorreu um erro ao processar a sua solicitação';
+
+      if(errorResponse.status === 403){
+        msg = 'Você não tem permissão para executar essa ação';
+      }
+
+      try {
+        errors = errorResponse.json();
+
+        msg = errors[0].mensagemUsuario;
+      } catch (e) { }
+
+      console.error('Ocorreu um erro', errorResponse);
+    } else {
+      msg = 'Erro ao processar serviço remoto. Tente novamente.';
+      console.error('Ocorreu um erro', errorResponse);
     }
 
     this.toasty.error(msg);
