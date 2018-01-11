@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { FormControl } from '@angular/forms/src/model';
-import { Login } from './../../core/model';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,12 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFormComponent {
 
-  model = new Login();
+  constructor(
+    private auth: AuthService,
+    private errorHandler: ErrorHandlerService,
+    private router: Router
+  ) { }
 
-  constructor(private auth: AuthService) { }
-
-  login(form: FormControl) {
-    this.auth.login(this.model.usuario, this.model.senha);
+  login(usuario: string, senha: string) {
+    this.auth.login(usuario, senha)
+      .then(() => {
+        this.router.navigate(['/lancamentos'])
+      })
+      .catch(erro => {
+        this.errorHandler.handle(erro);
+      });
   }
 
 }

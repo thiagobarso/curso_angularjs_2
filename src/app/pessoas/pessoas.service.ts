@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 import { Pessoa } from '../core/model';
+import { AuthHttp } from 'angular2-jwt';
 
 export class PessoasFiltro {
     nome: string;
@@ -15,13 +16,10 @@ export class PessoasService {
 
     pessoasUrl = 'http://localhost:8080/pessoas';
 
-    constructor(private http: Http) { }
+    constructor(private http: AuthHttp) { }
 
     pesquisar(filtro: PessoasFiltro): Promise<any> {
         const params = new URLSearchParams();
-
-        const headers = new Headers();
-        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
         params.set('page', filtro.pagina.toString());
         params.set('size', filtro.itensPorPagina.toString());
@@ -30,7 +28,7 @@ export class PessoasService {
             params.set('nome', filtro.nome);
         }
 
-        return this.http.get(`${this.pessoasUrl}?resumo`, { headers, search: params })
+        return this.http.get(`${this.pessoasUrl}?resumo`, { search: params })
             .toPromise()
             .then(response => {
                 const responseJson = response.json()
@@ -46,52 +44,35 @@ export class PessoasService {
     }
 
     listarTodas(): Promise<any> {
-        const headers = new Headers();
-        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-        return this.http.get(this.pessoasUrl, { headers })
+        return this.http.get(this.pessoasUrl)
             .toPromise()
             .then(response => response.json().content);
 
     }
 
     excluir(codigo: number): Promise<void> {
-        const headers = new Headers();
-        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
-        return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+        return this.http.delete(`${this.pessoasUrl}/${codigo}`)
             .toPromise()
             .then(() => null);
     }
 
     mudarStatus(codigo: number, ativo: boolean): Promise<void> {
-        const headers = new Headers();
-        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-        headers.append('Content-Type', 'application/json');
-
-        return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
+        return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo)
             .toPromise()
             .then(() => null);
     }
 
     adicionar(pessoa: Pessoa): Promise<any> {
-        const headers = new Headers();
-        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-        headers.append('Content-Type', 'application/json');
-
         pessoa.codigo = null;
 
-        return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), { headers })
+        return this.http.post(this.pessoasUrl, JSON.stringify(pessoa))
             .toPromise()
             .then(response => response.json());
     }
 
     buscarPorCodigo(codigo: number): Promise<Pessoa> {
-        const headers = new Headers();
-        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-        headers.append('Content-Type', 'application/json');
-
-        return this.http.get(`${this.pessoasUrl}/${codigo}`, { headers })
+        return this.http.get(`${this.pessoasUrl}/${codigo}`)
             .toPromise()
             .then(response => {
                 return response.json();
@@ -99,13 +80,9 @@ export class PessoasService {
     }
 
     atualizar(pessoa: Pessoa): Promise<Pessoa> {
-        const headers = new Headers();
-        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-        headers.append('Content-Type', 'application/json');
-
         const codigo = pessoa.codigo;
 
-        return this.http.put(`${this.pessoasUrl}/${codigo}`, JSON.stringify(pessoa), { headers })
+        return this.http.put(`${this.pessoasUrl}/${codigo}`, JSON.stringify(pessoa))
             .toPromise()
             .then(response => {
                 return response.json();
