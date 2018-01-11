@@ -16,6 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
 import { AuthService } from './../seguranca/auth.service';
 import { JwtHelper } from 'angular2-jwt';
@@ -31,7 +32,8 @@ registerLocaleData(localePt, 'pt-BR');
   ],
   declarations: [
     NavbarComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    NaoAutorizadoComponent
   ],
   exports: [
     NavbarComponent,

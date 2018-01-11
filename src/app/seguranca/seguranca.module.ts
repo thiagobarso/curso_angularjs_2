@@ -1,3 +1,4 @@
+import { LogoutService } from './logout.service';
 import { AuthService } from './auth.service';
 import { MoneyHttp } from './money-http';
 import { Http, RequestOptions } from '@angular/http';
@@ -25,6 +26,7 @@ import { SegurancaRoutingModule } from './seguranca-routing.module';
 
 import { SharedModule } from './../shared/shared.module';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { AuthGuard } from './auth.guard';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions){
   const config = new AuthConfig({
@@ -61,12 +63,10 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
-      deps: [
-        AuthService,
-        Http,
-        RequestOptions
-      ]
-    }
+      deps: [AuthService,Http,RequestOptions]
+    },
+    AuthGuard,
+    LogoutService
   ]
 })
 export class SegurancaModule { }

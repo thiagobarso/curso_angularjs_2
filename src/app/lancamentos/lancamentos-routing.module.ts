@@ -2,11 +2,27 @@ import { LancamentosCadastroComponent } from './lancamentos-cadastro/lancamentos
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from '../seguranca/auth.guard';
 
 const routes: Routes = [
-  { path: 'lancamentos', component: LancamentosPesquisaComponent },
-  { path: 'lancamentos/novo', component: LancamentosCadastroComponent },
-  { path: 'lancamentos/:codigo', component: LancamentosCadastroComponent }
+  {
+    path: 'lancamentos',
+    component: LancamentosPesquisaComponent,
+    canActivate: [AuthGuard],
+    data: { roles : ['ROLE_PESQUISAR_LANCAMENTO']}
+  },
+  {
+    path: 'lancamentos/novo',
+    component: LancamentosCadastroComponent,
+    canActivate: [AuthGuard],
+    data: { roles : ['ROLE_CADASTRAR_LANCAMENTO']}
+  },
+  {
+    path: 'lancamentos/:codigo',
+    component: LancamentosCadastroComponent,
+    canActivate: [AuthGuard],
+    data: { roles : ['ROLE_CADASTRAR_LANCAMENTO']}
+  }
 ];
 
 @NgModule({
