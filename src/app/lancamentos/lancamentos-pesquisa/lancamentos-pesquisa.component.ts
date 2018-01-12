@@ -19,6 +19,10 @@ export class LancamentosPesquisaComponent implements OnInit {
   lancamentos = [];
   @ViewChild('tabela') grid;
 
+  dataVencimentoInicio : Date;
+
+  dataVencimentoFim: Date;
+
   constructor(
     private lancamentoService: LancamentosService,
     private auth: AuthService,

@@ -11,6 +11,8 @@ export class LancamentosGridComponent {
   @Input() lancamentos : any ;  
   @Input() filtro : any ; 
 
+  totalRegistros: any;
+
   aoMudarPagina(event: LazyLoadEvent){
     const pagina = event.first / event.rows;    
   }
