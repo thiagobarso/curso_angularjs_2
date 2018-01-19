@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="ui-g">
+    <form action="" autocomplete="off" (ngSubmit)="pesquisar()">
+
+      <div class="ui-g-12">
+        <h1>Cidade</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>UF</label>
+        <input pInputText type="text" name="uf" [(ngModel)]="filtro.uf">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <!--app-lancamentos-grid [lancamentos]="lancamentos" [filtro]="filtro"></app-lancamentos-grid -->
+
+        <p-dataTable [value]="cidades" [responsive]="true" emptyMessage="Nenhum item encontrado." 
+        [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+          <p-column field="nome" header="Nome"></p-column>
+          <p-column field="uf" header="UF"></p-column>
+          <p-column styleClass="col-acoes">
+            <ng-template let-item="rowData" pTemplate="body">
+              <a pButton icon="fa-pencil" 
+                pTooltip="Editar" 
+                tooltipPosition="top"
+                [routerLink]="['/cidade', item.id]"></a>
+              <button pButton 
+              icon="fa-trash" 
+              pTooltip="Excluir" 
+              tooltipPosition="top"
+              (click)="confirmarExclusao(item)"
+              [disabled]="!auth.temPermissao('ROLE_REMOVER_CIDADE')"></button>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Nova Cidade" routerLink="/cidade/novo"></a>
+    </div>
+
+  </div>
+</div>

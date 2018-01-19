@@ -1,3 +1,9 @@
+export class Cidade{
+    id: number;
+    nome: string;
+    uf: string;
+}
+
 export class Login{
     usuario: string;
     senha: string;

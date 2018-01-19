@@ -18,9 +18,9 @@ export class LancamentoFiltro {
 @Injectable()
 export class LancamentosService {
 
-  lancamentosUrl: string ;
+  lancamentosUrl: string;
 
-  constructor(private http: AuthHttp) { 
+  constructor(private http: AuthHttp) {
     this.lancamentosUrl = `${environment.apiUrl}/lancamentos`;
   }
 
@@ -78,20 +78,20 @@ export class LancamentosService {
       .then(response => {
         console.log('ATUALIZAR:')
         console.log(response.json().content);
-        let lancamentos : Lancamento[] = [];
+        let lancamentos: Lancamento[] = [];
         lancamentos.push(response.json());
         let lancamentosTransformados = this.converterStringParaDatas(lancamentos);
         return lancamentosTransformados[0];
       });
   }
 
-  buscarPorCodigo(codigo : number): Promise<Lancamento>{
+  buscarPorCodigo(codigo: number): Promise<Lancamento> {
     return this.http.get(`${this.lancamentosUrl}/${codigo}`)
       .toPromise()
       .then(response => {
         console.log('BUSCAR POR CODIGO:');
         console.log(response.json());
-        let lancamentos : Lancamento[] = [];
+        let lancamentos: Lancamento[] = [];
         lancamentos.push(response.json());
         let lancamentosTransformados = this.converterStringParaDatas(lancamentos);
         console.log(lancamentosTransformados[0]);
@@ -100,14 +100,14 @@ export class LancamentosService {
   }
 
 
-  private converterStringParaDatas(lancamentos: Lancamento[]): Lancamento[]{
-    for(let l of lancamentos){      
-      if(l.dataVencimento != null){
-        const dataVencimentoTipoDate = moment(l.dataVencimento, 'YYYY/MM/DD').toDate();    
+  private converterStringParaDatas(lancamentos: Lancamento[]): Lancamento[] {
+    for (let l of lancamentos) {
+      if (l.dataVencimento != null) {
+        const dataVencimentoTipoDate = moment(l.dataVencimento, 'YYYY/MM/DD').toDate();
         l.dataVencimento = dataVencimentoTipoDate;
       }
-      if(l.dataPagamento != null){
-        const dataPagamentoTipoDate = moment(l.dataPagamento, 'YYYY/MM/DD').toDate();    
+      if (l.dataPagamento != null) {
+        const dataPagamentoTipoDate = moment(l.dataPagamento, 'YYYY/MM/DD').toDate();
         l.dataPagamento = dataPagamentoTipoDate;
       }
     }
