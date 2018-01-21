@@ -33,12 +33,10 @@ import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pes
 import { PessoasCadastroComponent } from './pessoas/pessoas-cadastro/pessoas-cadastro.component';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { SegurancaModule } from './seguranca/seguranca.module';
-import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProdutosCadastroComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
